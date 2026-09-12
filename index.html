@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>C Programming Examination</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="header">
+
+        <div class="exam-title">
+            <h1>C Programming Examination</h1>
+            <p>ADCA – Programming Test</p>
+        </div>
+
+        <div class="timer-box">
+            <span class="timer-label">TIME REMAINING</span>
+            <span id="timer">60:00</span>
+        </div>
+
+    </header>
+
+
+    <!-- ================= START SCREEN ================= -->
+
+    <section id="startScreen" class="start-screen">
+
+        <div class="start-card">
+
+            <h2>Welcome to the Examination</h2>
+
+            <p class="instruction">
+                Please enter your details before starting the examination.
+            </p>
+
+            <div class="input-group">
+                <label for="studentName">Student Name</label>
+                <input
+                    type="text"
+                    id="studentName"
+                    placeholder="Enter your name"
+                >
+            </div>
+
+            <div class="input-group">
+                <label for="rollNumber">Roll Number</label>
+                <input
+                    type="text"
+                    id="rollNumber"
+                    placeholder="Enter your roll number"
+                >
+            </div>
+
+            <div class="rules">
+
+                <h3>Instructions</h3>
+
+                <ul>
+                    <li>Examination duration is 60 minutes.</li>
+                    <li>Read all questions carefully.</li>
+                    <li>Write your answers on the answer sheet provided.</li>
+                    <li>Do not use mobile phones or discuss with other students.</li>
+                    <li>Stop writing when the timer reaches zero.</li>
+                </ul>
+
+            </div>
+
+            <button id="startBtn" class="start-btn">
+                START EXAM
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= EXAM SCREEN ================= -->
+
+    <main id="examScreen" class="exam-screen">
+
+        <div class="student-info">
+
+            <div>
+                <strong>Student:</strong>
+                <span id="displayName"></span>
+            </div>
+
+            <div>
+                <strong>Roll No:</strong>
+                <span id="displayRoll"></span>
+            </div>
+
+            <div>
+                <strong>Duration:</strong>
+                60 Minutes
+            </div>
+
+        </div>
+
+
+        <div class="paper-container">
+
+            <div class="paper-header">
+
+                <div>
+                    <h2>Question Paper</h2>
+                    <p>Write all answers on your answer sheet.</p>
+                </div>
+
+                <button id="fullscreenBtn" class="fullscreen-btn">
+                    ⛶ Full Screen
+                </button>
+
+            </div>
+
+
+            <!-- PDF QUESTION PAPER -->
+
+            <iframe
+                src="question-paper.pdf"
+                class="pdf-viewer"
+                title="C Programming Question Paper">
+            </iframe>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= TIME OVER ================= -->
+
+    <div id="timeOver" class="time-over">
+
+        <div class="time-over-card">
+
+            <div class="warning-icon">!</div>
+
+            <h2>Time Over</h2>
+
+            <p>
+                The examination time has ended.
+            </p>
+
+            <p class="stop-writing">
+                Please stop writing.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =========================================
+           EXAM SETTINGS
+        ========================================= */
+
+        let totalSeconds = 60 * 60; // 60 minutes
+
+        let timerInterval;
+
+
+        /* =========================================
+           ELEMENTS
+        ========================================= */
+
+        const startScreen = document.getElementById("startScreen");
+        const examScreen = document.getElementById("examScreen");
+
+        const startBtn = document.getElementById("startBtn");
+
+        const studentName = document.getElementById("studentName");
+        const rollNumber = document.getElementById("rollNumber");
+
+        const displayName = document.getElementById("displayName");
+        const displayRoll = document.getElementById("displayRoll");
+
+        const timer = document.getElementById("timer");
+
+        const timeOver = document.getElementById("timeOver");
+
+        const fullscreenBtn =
+            document.getElementById("fullscreenBtn");
+
+
+        /* =========================================
+           START EXAM
+        ========================================= */
+
+        startBtn.addEventListener("click", function () {
+
+            const name = studentName.value.trim();
+            const roll = rollNumber.value.trim();
+
+            if (name === "" || roll === "") {
+
+                alert("Please enter your name and roll number.");
+
+                return;
+            }
+
+            displayName.textContent = name;
+            displayRoll.textContent = roll;
+
+            startScreen.style.display = "none";
+            examScreen.style.display = "block";
+
+            startTimer();
+
+        });
+
+
+        /* =========================================
+           TIMER
+        ========================================= */
+
+        function startTimer() {
+
+            updateTimer();
+
+            timerInterval = setInterval(function () {
+
+                totalSeconds--;
+
+                updateTimer();
+
+                if (totalSeconds <= 0) {
+
+                    clearInterval(timerInterval);
+
+                    timer.textContent = "00:00";
+
+                    timeOver.classList.add("show");
+
+                }
+
+            }, 1000);
+
+        }
+
+
+        /* =========================================
+           UPDATE TIMER DISPLAY
+        ========================================= */
+
+        function updateTimer() {
+
+            let minutes =
+                Math.floor(totalSeconds / 60);
+
+            let seconds =
+                totalSeconds % 60;
+
+            minutes =
+                String(minutes).padStart(2, "0");
+
+            seconds =
+                String(seconds).padStart(2, "0");
+
+            timer.textContent =
+                `${minutes}:${seconds}`;
+
+
+            /* Last 5 minutes */
+
+            if (totalSeconds <= 300) {
+
+                timer.classList.add("danger");
+
+            }
+
+        }
+
+
+        /* =========================================
+           FULL SCREEN
+        ========================================= */
+
+        fullscreenBtn.addEventListener("click", function () {
+
+            if (!document.fullscreenElement) {
+
+                document.documentElement.requestFullscreen();
+
+                fullscreenBtn.textContent =
+                    "✕ Exit Full Screen";
+
+            }
+
+            else {
+
+                document.exitFullscreen();
+
+                fullscreenBtn.textContent =
+                    "⛶ Full Screen";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

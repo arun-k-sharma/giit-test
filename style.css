@@ -1,0 +1,553 @@
+/* =========================================
+   BASIC RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f1f3f6;
+    color: #222;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header {
+    height: 80px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #ddd;
+
+    display: flex;
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+}
+
+
+.exam-title h1 {
+    font-size: 23px;
+    margin-bottom: 4px;
+}
+
+
+.exam-title p {
+    color: #666;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   TIMER
+========================================= */
+
+.timer-box {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    background: #111827;
+
+    color: white;
+
+    padding: 8px 18px;
+
+    border-radius: 8px;
+
+    min-width: 130px;
+}
+
+
+.timer-label {
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    opacity: 0.75;
+}
+
+
+#timer {
+    font-size: 24px;
+
+    font-weight: bold;
+
+    font-family: monospace;
+}
+
+
+#timer.danger {
+    color: #ff4d4d;
+
+    animation: blink 1s infinite;
+}
+
+
+@keyframes blink {
+
+    50% {
+        opacity: 0.5;
+    }
+
+}
+
+
+/* =========================================
+   START SCREEN
+========================================= */
+
+.start-screen {
+
+    min-height: calc(100vh - 80px);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 30px;
+}
+
+
+.start-card {
+
+    background: white;
+
+    width: 100%;
+
+    max-width: 600px;
+
+    padding: 40px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 5px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+.start-card h2 {
+
+    font-size: 28px;
+
+    margin-bottom: 10px;
+}
+
+
+.instruction {
+
+    color: #666;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.input-group {
+
+    margin-bottom: 18px;
+}
+
+
+.input-group label {
+
+    display: block;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+}
+
+
+.input-group input {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+
+.input-group input:focus {
+
+    border-color: #333;
+}
+
+
+/* =========================================
+   RULES
+========================================= */
+
+.rules {
+
+    background: #f5f6f8;
+
+    padding: 18px;
+
+    border-radius: 8px;
+
+    margin: 25px 0;
+}
+
+
+.rules h3 {
+
+    margin-bottom: 10px;
+
+    font-size: 16px;
+}
+
+
+.rules li {
+
+    margin-left: 20px;
+
+    margin-bottom: 7px;
+
+    font-size: 14px;
+
+    color: #555;
+}
+
+
+/* =========================================
+   START BUTTON
+========================================= */
+
+.start-btn {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #111827;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.start-btn:hover {
+
+    background: #000;
+}
+
+
+/* =========================================
+   EXAM SCREEN
+========================================= */
+
+.exam-screen {
+
+    display: none;
+
+    padding: 20px 30px 40px;
+}
+
+
+/* =========================================
+   STUDENT INFO
+========================================= */
+
+.student-info {
+
+    background: white;
+
+    padding: 15px 20px;
+
+    border-radius: 8px;
+
+    display: flex;
+
+    gap: 40px;
+
+    margin-bottom: 15px;
+
+    border: 1px solid #ddd;
+}
+
+
+.student-info span {
+
+    margin-left: 5px;
+
+    color: #555;
+}
+
+
+/* =========================================
+   PAPER CONTAINER
+========================================= */
+
+.paper-container {
+
+    background: white;
+
+    border-radius: 8px;
+
+    border: 1px solid #ddd;
+
+    overflow: hidden;
+}
+
+
+.paper-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 15px 20px;
+
+    border-bottom: 1px solid #ddd;
+}
+
+
+.paper-header h2 {
+
+    font-size: 18px;
+
+    margin-bottom: 3px;
+}
+
+
+.paper-header p {
+
+    font-size: 13px;
+
+    color: #777;
+}
+
+
+/* =========================================
+   FULL SCREEN BUTTON
+========================================= */
+
+.fullscreen-btn {
+
+    padding: 9px 14px;
+
+    border: 1px solid #ccc;
+
+    background: white;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+}
+
+
+.fullscreen-btn:hover {
+
+    background: #f3f4f6;
+}
+
+
+/* =========================================
+   PDF VIEWER
+========================================= */
+
+.pdf-viewer {
+
+    width: 100%;
+
+    height: calc(100vh - 180px);
+
+    min-height: 600px;
+
+    border: none;
+
+    display: block;
+}
+
+
+/* =========================================
+   TIME OVER
+========================================= */
+
+.time-over {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 9999;
+}
+
+
+.time-over.show {
+
+    display: flex;
+}
+
+
+.time-over-card {
+
+    background: white;
+
+    padding: 45px;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    width: 90%;
+
+    max-width: 420px;
+}
+
+
+.warning-icon {
+
+    width: 55px;
+
+    height: 55px;
+
+    border-radius: 50%;
+
+    background: #eee;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 0 auto 20px;
+
+    font-size: 30px;
+
+    font-weight: bold;
+}
+
+
+.time-over-card h2 {
+
+    font-size: 28px;
+
+    margin-bottom: 10px;
+}
+
+
+.time-over-card p {
+
+    color: #666;
+}
+
+
+.stop-writing {
+
+    margin-top: 12px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .header {
+
+        padding: 0 15px;
+
+    }
+
+    .exam-title h1 {
+
+        font-size: 17px;
+
+    }
+
+    .exam-title p {
+
+        display: none;
+
+    }
+
+    .timer-box {
+
+        min-width: 95px;
+
+        padding: 6px 10px;
+
+    }
+
+    #timer {
+
+        font-size: 19px;
+
+    }
+
+    .start-card {
+
+        padding: 25px;
+
+    }
+
+    .exam-screen {
+
+        padding: 10px;
+
+    }
+
+    .student-info {
+
+        flex-direction: column;
+
+        gap: 8px;
+
+    }
+
+}
