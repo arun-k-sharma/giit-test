@@ -12,16 +12,17 @@
 <body>
 
     <!-- ================= HEADER ================= -->
+
     <header class="header">
 
         <div class="exam-title">
             <h1>C Programming Examination</h1>
-            <p>ADCA – Programming Test</p>
+            <p>ADCA — Internal Assessment</p>
         </div>
 
         <div class="timer-box">
             <span class="timer-label">TIME REMAINING</span>
-            <span id="timer">60:00</span>
+            <span id="timer">50:00</span>
         </div>
 
     </header>
@@ -35,43 +36,101 @@
 
             <h2>Welcome to the Examination</h2>
 
-            <p class="instruction">
-                Please enter your details before starting the examination.
+            <p class="subtitle">
+                C Programming — ADCA
             </p>
 
             <div class="input-group">
-                <label for="studentName">Student Name</label>
+
+                <label for="studentName">
+                    Student Name
+                </label>
+
                 <input
                     type="text"
                     id="studentName"
-                    placeholder="Enter your name"
+                    placeholder="Enter your full name"
+                    autocomplete="off"
                 >
+
             </div>
 
+
             <div class="input-group">
-                <label for="rollNumber">Roll Number</label>
+
+                <label for="rollNumber">
+                    Roll Number
+                </label>
+
                 <input
                     type="text"
                     id="rollNumber"
-                    placeholder="Enter your roll number"
+                    placeholder="Enter roll number"
+                    autocomplete="off"
                 >
+
             </div>
+
+
+            <!-- ================= RULES ================= -->
 
             <div class="rules">
 
-                <h3>Instructions</h3>
+                <h3>Examination Instructions</h3>
 
                 <ul>
-                    <li>Examination duration is 60 minutes.</li>
-                    <li>Read all questions carefully.</li>
-                    <li>Write your answers on the answer sheet provided.</li>
-                    <li>Do not use mobile phones or discuss with other students.</li>
-                    <li>Stop writing when the timer reaches zero.</li>
+
+                    <li>
+                        Examination duration is
+                        <strong>60 minutes</strong>.
+                    </li>
+
+                    <li>
+                        Write your answers on the
+                        answer sheet.
+                    </li>
+
+                    <li>
+                        Do not open other browser tabs
+                        or windows.
+                    </li>
+
+                    <li>
+                        Do not exit full-screen mode.
+                    </li>
+
+                    <li>
+                        Switching tabs or leaving
+                        full-screen mode will be recorded.
+                    </li>
+
+                    <li>
+                        After repeated violations,
+                        the examination may be terminated.
+                    </li>
+
+                    <li>
+                        Mobile phones are not allowed.
+                    </li>
+
                 </ul>
 
             </div>
 
-            <button id="startBtn" class="start-btn">
+
+            <div class="warning-note">
+
+                ⚠️ <strong>Important:</strong>
+                Once the examination starts, the timer
+                cannot be restarted.
+
+            </div>
+
+
+            <button
+                id="startBtn"
+                class="start-btn"
+            >
                 START EXAM
             </button>
 
@@ -82,7 +141,12 @@
 
     <!-- ================= EXAM SCREEN ================= -->
 
-    <main id="examScreen" class="exam-screen">
+    <main
+        id="examScreen"
+        class="exam-screen"
+    >
+
+        <!-- STUDENT INFORMATION -->
 
         <div class="student-info">
 
@@ -97,49 +161,100 @@
             </div>
 
             <div>
-                <strong>Duration:</strong>
-                60 Minutes
+                <strong>Violations:</strong>
+                <span id="violationCount">0</span>/3
             </div>
 
         </div>
 
+
+        <!-- EXAM PAPER -->
 
         <div class="paper-container">
 
             <div class="paper-header">
 
                 <div>
+
                     <h2>Question Paper</h2>
-                    <p>Write all answers on your answer sheet.</p>
+
+                    <p>
+                        Write answers on your answer sheet.
+                    </p>
+
                 </div>
 
-                <button id="fullscreenBtn" class="fullscreen-btn">
+
+                <button
+                    id="fullscreenBtn"
+                    class="fullscreen-btn"
+                >
                     ⛶ Full Screen
                 </button>
 
             </div>
 
 
-            <!-- PDF QUESTION PAPER -->
-
             <iframe
                 src="question-paper.pdf"
                 class="pdf-viewer"
-                title="C Programming Question Paper">
-            </iframe>
+                title="C Programming Question Paper"
+            ></iframe>
 
         </div>
 
     </main>
 
 
+    <!-- ================= VIOLATION WARNING ================= -->
+
+    <div
+        id="violationModal"
+        class="modal"
+    >
+
+        <div class="modal-card warning-card">
+
+            <div class="warning-icon">
+                ⚠
+            </div>
+
+            <h2>Warning</h2>
+
+            <p id="warningMessage">
+                Examination violation detected.
+            </p>
+
+            <div class="violation-number">
+                Violation
+                <span id="currentViolation">1</span>
+                of 3
+            </div>
+
+            <button
+                id="warningOkBtn"
+                class="modal-btn"
+            >
+                I Understand
+            </button>
+
+        </div>
+
+    </div>
+
+
     <!-- ================= TIME OVER ================= -->
 
-    <div id="timeOver" class="time-over">
+    <div
+        id="timeOver"
+        class="modal"
+    >
 
-        <div class="time-over-card">
+        <div class="modal-card">
 
-            <div class="warning-icon">!</div>
+            <div class="time-icon">
+                ⏱
+            </div>
 
             <h2>Time Over</h2>
 
@@ -156,113 +271,337 @@
     </div>
 
 
+    <!-- ================= EXAM TERMINATED ================= -->
+
+    <div
+        id="examTerminated"
+        class="modal"
+    >
+
+        <div class="modal-card">
+
+            <div class="time-icon">
+                !
+            </div>
+
+            <h2>Examination Terminated</h2>
+
+            <p>
+                The maximum number of violations
+                has been reached.
+            </p>
+
+            <p class="stop-writing">
+                Please contact the teacher.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
     <script>
 
-        /* =========================================
-           EXAM SETTINGS
-        ========================================= */
+        /* ==========================================
+           SETTINGS
+        ========================================== */
 
-        let totalSeconds = 60 * 60; // 60 minutes
+        const EXAM_DURATION = 50 * 60;
 
-        let timerInterval;
+        const MAX_VIOLATIONS = 3;
 
 
-        /* =========================================
+        /* ==========================================
+           VARIABLES
+        ========================================== */
+
+        let remainingSeconds = EXAM_DURATION;
+
+        let timerInterval = null;
+
+        let examStarted = false;
+
+        let examFinished = false;
+
+        let violationCount = 0;
+
+        let warningOpen = false;
+
+        let submissionLocked = false;
+
+
+        /* ==========================================
            ELEMENTS
-        ========================================= */
+        ========================================== */
 
-        const startScreen = document.getElementById("startScreen");
-        const examScreen = document.getElementById("examScreen");
+        const startScreen =
+            document.getElementById("startScreen");
 
-        const startBtn = document.getElementById("startBtn");
+        const examScreen =
+            document.getElementById("examScreen");
 
-        const studentName = document.getElementById("studentName");
-        const rollNumber = document.getElementById("rollNumber");
-
-        const displayName = document.getElementById("displayName");
-        const displayRoll = document.getElementById("displayRoll");
-
-        const timer = document.getElementById("timer");
-
-        const timeOver = document.getElementById("timeOver");
+        const startBtn =
+            document.getElementById("startBtn");
 
         const fullscreenBtn =
             document.getElementById("fullscreenBtn");
 
+        const studentName =
+            document.getElementById("studentName");
 
-        /* =========================================
+        const rollNumber =
+            document.getElementById("rollNumber");
+
+        const displayName =
+            document.getElementById("displayName");
+
+        const displayRoll =
+            document.getElementById("displayRoll");
+
+        const timer =
+            document.getElementById("timer");
+
+        const violationDisplay =
+            document.getElementById("violationCount");
+
+        const violationModal =
+            document.getElementById("violationModal");
+
+        const warningMessage =
+            document.getElementById("warningMessage");
+
+        const currentViolation =
+            document.getElementById("currentViolation");
+
+        const warningOkBtn =
+            document.getElementById("warningOkBtn");
+
+        const timeOver =
+            document.getElementById("timeOver");
+
+        const examTerminated =
+            document.getElementById("examTerminated");
+
+
+        /* ==========================================
            START EXAM
-        ========================================= */
+        ========================================== */
 
-        startBtn.addEventListener("click", function () {
+        startBtn.addEventListener(
+            "click",
+            startExam
+        );
 
-            const name = studentName.value.trim();
-            const roll = rollNumber.value.trim();
+
+        function startExam() {
+
+            if (examStarted) {
+                return;
+            }
+
+            const name =
+                studentName.value.trim();
+
+            const roll =
+                rollNumber.value.trim();
+
 
             if (name === "" || roll === "") {
 
-                alert("Please enter your name and roll number.");
+                alert(
+                    "Please enter your name and roll number."
+                );
 
                 return;
             }
 
+
+            /* Display student information */
+
             displayName.textContent = name;
+
             displayRoll.textContent = roll;
 
+
+            /* Lock start */
+
+            examStarted = true;
+
+
+            /* Show exam */
+
             startScreen.style.display = "none";
+
             examScreen.style.display = "block";
+
+
+            /* Request fullscreen */
+
+            enterFullscreen();
+
+
+            /* Start timer */
 
             startTimer();
 
-        });
+        }
 
 
-        /* =========================================
+        /* ==========================================
+           FULLSCREEN
+        ========================================== */
+
+        async function enterFullscreen() {
+
+            try {
+
+                if (!document.fullscreenElement) {
+
+                    await document.documentElement.requestFullscreen();
+
+                }
+
+            }
+
+            catch (error) {
+
+                console.log(
+                    "Fullscreen request was blocked."
+                );
+
+            }
+
+        }
+
+
+        fullscreenBtn.addEventListener(
+            "click",
+            function () {
+
+                if (examFinished) {
+                    return;
+                }
+
+                enterFullscreen();
+
+            }
+        );
+
+
+        /* ==========================================
+           DETECT EXITING FULLSCREEN
+        ========================================== */
+
+        document.addEventListener(
+            "fullscreenchange",
+            function () {
+
+                if (
+                    examStarted &&
+                    !examFinished &&
+                    !document.fullscreenElement
+                ) {
+
+                    registerViolation(
+                        "You exited full-screen mode."
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           DETECT TAB SWITCHING
+        ========================================== */
+
+        document.addEventListener(
+            "visibilitychange",
+            function () {
+
+                if (
+                    document.hidden &&
+                    examStarted &&
+                    !examFinished
+                ) {
+
+                    registerViolation(
+                        "You switched to another tab or window."
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
            TIMER
-        ========================================= */
+        ========================================== */
 
         function startTimer() {
 
             updateTimer();
 
-            timerInterval = setInterval(function () {
 
-                totalSeconds--;
+            timerInterval = setInterval(
+                function () {
 
-                updateTimer();
+                    if (examFinished) {
+                        return;
+                    }
 
-                if (totalSeconds <= 0) {
 
-                    clearInterval(timerInterval);
+                    remainingSeconds--;
 
-                    timer.textContent = "00:00";
 
-                    timeOver.classList.add("show");
+                    updateTimer();
 
-                }
 
-            }, 1000);
+                    if (remainingSeconds <= 0) {
+
+                        finishExam();
+
+                    }
+
+                },
+                1000
+            );
 
         }
 
 
-        /* =========================================
-           UPDATE TIMER DISPLAY
-        ========================================= */
+        /* ==========================================
+           UPDATE TIMER
+        ========================================== */
 
         function updateTimer() {
 
             let minutes =
-                Math.floor(totalSeconds / 60);
+                Math.floor(
+                    remainingSeconds / 60
+                );
 
             let seconds =
-                totalSeconds % 60;
+                remainingSeconds % 60;
+
 
             minutes =
-                String(minutes).padStart(2, "0");
+                String(minutes).padStart(
+                    2,
+                    "0"
+                );
+
 
             seconds =
-                String(seconds).padStart(2, "0");
+                String(seconds).padStart(
+                    2,
+                    "0"
+                );
+
 
             timer.textContent =
                 `${minutes}:${seconds}`;
@@ -270,40 +609,334 @@
 
             /* Last 5 minutes */
 
-            if (totalSeconds <= 300) {
+            if (remainingSeconds <= 300) {
 
-                timer.classList.add("danger");
+                timer.classList.add(
+                    "danger"
+                );
 
             }
 
         }
 
 
-        /* =========================================
-           FULL SCREEN
-        ========================================= */
+        /* ==========================================
+           VIOLATION SYSTEM
+        ========================================== */
 
-        fullscreenBtn.addEventListener("click", function () {
+        function registerViolation(reason) {
 
-            if (!document.fullscreenElement) {
+            if (
+                !examStarted ||
+                examFinished ||
+                warningOpen
+            ) {
 
-                document.documentElement.requestFullscreen();
-
-                fullscreenBtn.textContent =
-                    "✕ Exit Full Screen";
-
-            }
-
-            else {
-
-                document.exitFullscreen();
-
-                fullscreenBtn.textContent =
-                    "⛶ Full Screen";
+                return;
 
             }
 
-        });
+
+            violationCount++;
+
+
+            violationDisplay.textContent =
+                violationCount;
+
+
+            currentViolation.textContent =
+                violationCount;
+
+
+            warningMessage.textContent =
+                reason;
+
+
+            warningOpen = true;
+
+
+            violationModal.classList.add(
+                "show"
+            );
+
+
+            /* Maximum violations */
+
+            if (
+                violationCount >=
+                MAX_VIOLATIONS
+            ) {
+
+                warningOkBtn.textContent =
+                    "Close";
+
+            }
+
+        }
+
+
+        /* ==========================================
+           WARNING OK BUTTON
+        ========================================== */
+
+        warningOkBtn.addEventListener(
+            "click",
+            function () {
+
+                violationModal.classList.remove(
+                    "show"
+                );
+
+                warningOpen = false;
+
+
+                if (
+                    violationCount >=
+                    MAX_VIOLATIONS
+                ) {
+
+                    terminateExam();
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           FINISH EXAM
+        ========================================== */
+
+        function finishExam() {
+
+            if (examFinished) {
+                return;
+            }
+
+
+            examFinished = true;
+
+
+            clearInterval(timerInterval);
+
+
+            timer.textContent = "00:00";
+
+
+            timeOver.classList.add(
+                "show"
+            );
+
+        }
+
+
+        /* ==========================================
+           TERMINATE EXAM
+        ========================================== */
+
+        function terminateExam() {
+
+            examFinished = true;
+
+
+            clearInterval(timerInterval);
+
+
+            examTerminated.classList.add(
+                "show"
+            );
+
+        }
+
+
+        /* ==========================================
+           PREVENT RIGHT CLICK
+        ========================================== */
+
+        document.addEventListener(
+            "contextmenu",
+            function (event) {
+
+                if (examStarted) {
+
+                    event.preventDefault();
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           KEYBOARD SHORTCUT PROTECTION
+        ========================================== */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    !examStarted ||
+                    examFinished
+                ) {
+
+                    return;
+
+                }
+
+
+                const key =
+                    event.key.toLowerCase();
+
+
+                /*
+                    Disable F12
+                    Disable Ctrl+Shift+I
+                    Disable Ctrl+Shift+J
+                    Disable Ctrl+Shift+C
+                    Disable Ctrl+U
+                */
+
+                if (
+                    event.key === "F12" ||
+
+                    (
+                        event.ctrlKey &&
+                        event.shiftKey &&
+                        (
+                            key === "i" ||
+                            key === "j" ||
+                            key === "c"
+                        )
+                    ) ||
+
+                    (
+                        event.ctrlKey &&
+                        key === "u"
+                    )
+                ) {
+
+                    event.preventDefault();
+
+                    registerViolation(
+                        "Restricted keyboard shortcut detected."
+                    );
+
+                }
+
+
+                /*
+                    Disable Ctrl+S
+                */
+
+                if (
+                    event.ctrlKey &&
+                    key === "s"
+                ) {
+
+                    event.preventDefault();
+
+                }
+
+
+                /*
+                    Disable Ctrl+P
+                */
+
+                if (
+                    event.ctrlKey &&
+                    key === "p"
+                ) {
+
+                    event.preventDefault();
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           PREVENT DRAGGING
+        ========================================== */
+
+        document.addEventListener(
+            "dragstart",
+            function (event) {
+
+                if (examStarted) {
+
+                    event.preventDefault();
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           PREVENT MULTIPLE SUBMISSION / START
+        ========================================== */
+
+        startBtn.addEventListener(
+            "dblclick",
+            function (event) {
+
+                event.preventDefault();
+
+            }
+        );
+
+
+        /*
+            Generic submission lock.
+
+            If later you add an actual
+            "Submit Exam" button, use:
+
+            if (submissionLocked) return;
+
+            submissionLocked = true;
+
+        */
+
+
+        window.addEventListener(
+            "beforeunload",
+            function (event) {
+
+                if (
+                    examStarted &&
+                    !examFinished
+                ) {
+
+                    event.preventDefault();
+
+                    event.returnValue =
+                        "Your examination is still running.";
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           DISABLE TEXT SELECTION
+        ========================================== */
+
+        document.addEventListener(
+            "selectstart",
+            function (event) {
+
+                if (examStarted) {
+
+                    event.preventDefault();
+
+                }
+
+            }
+        );
 
     </script>
 

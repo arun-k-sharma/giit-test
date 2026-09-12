@@ -1,5 +1,5 @@
 /* =========================================
-   BASIC RESET
+   RESET
 ========================================= */
 
 * {
@@ -10,9 +10,14 @@
 
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     background: #f1f3f6;
-    color: #222;
+
+    color: #202124;
 }
 
 
@@ -21,6 +26,7 @@ body {
 ========================================= */
 
 .header {
+
     height: 80px;
 
     background: #ffffff;
@@ -28,6 +34,7 @@ body {
     border-bottom: 1px solid #ddd;
 
     display: flex;
+
     align-items: center;
 
     justify-content: space-between;
@@ -35,6 +42,7 @@ body {
     padding: 0 30px;
 
     position: sticky;
+
     top: 0;
 
     z-index: 100;
@@ -42,14 +50,18 @@ body {
 
 
 .exam-title h1 {
+
     font-size: 23px;
-    margin-bottom: 4px;
+
+    margin-bottom: 5px;
 }
 
 
 .exam-title p {
-    color: #666;
+
     font-size: 14px;
+
+    color: #666;
 }
 
 
@@ -58,24 +70,29 @@ body {
 ========================================= */
 
 .timer-box {
+
     display: flex;
+
     flex-direction: column;
 
     align-items: center;
+
+    justify-content: center;
 
     background: #111827;
 
     color: white;
 
-    padding: 8px 18px;
+    padding: 8px 20px;
 
     border-radius: 8px;
 
-    min-width: 130px;
+    min-width: 140px;
 }
 
 
 .timer-label {
+
     font-size: 10px;
 
     letter-spacing: 1px;
@@ -85,7 +102,8 @@ body {
 
 
 #timer {
-    font-size: 24px;
+
+    font-size: 25px;
 
     font-weight: bold;
 
@@ -94,6 +112,7 @@ body {
 
 
 #timer.danger {
+
     color: #ff4d4d;
 
     animation: blink 1s infinite;
@@ -103,7 +122,7 @@ body {
 @keyframes blink {
 
     50% {
-        opacity: 0.5;
+        opacity: 0.45;
     }
 
 }
@@ -115,13 +134,14 @@ body {
 
 .start-screen {
 
-    min-height: calc(100vh - 80px);
+    min-height:
+        calc(100vh - 80px);
 
     display: flex;
 
-    justify-content: center;
-
     align-items: center;
+
+    justify-content: center;
 
     padding: 30px;
 }
@@ -133,14 +153,15 @@ body {
 
     width: 100%;
 
-    max-width: 600px;
+    max-width: 620px;
 
     padding: 40px;
 
     border-radius: 12px;
 
     box-shadow:
-        0 5px 25px rgba(0, 0, 0, 0.08);
+        0 8px 30px
+        rgba(0, 0, 0, 0.08);
 }
 
 
@@ -148,15 +169,15 @@ body {
 
     font-size: 28px;
 
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 
-.instruction {
+.subtitle {
 
     color: #666;
 
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 }
 
 
@@ -184,11 +205,11 @@ body {
 
     width: 100%;
 
-    padding: 12px;
+    padding: 12px 13px;
 
     border: 1px solid #ccc;
 
-    border-radius: 6px;
+    border-radius: 7px;
 
     font-size: 15px;
 
@@ -198,7 +219,7 @@ body {
 
 .input-group input:focus {
 
-    border-color: #333;
+    border-color: #222;
 }
 
 
@@ -214,27 +235,55 @@ body {
 
     border-radius: 8px;
 
-    margin: 25px 0;
+    margin-top: 25px;
 }
 
 
 .rules h3 {
 
-    margin-bottom: 10px;
-
     font-size: 16px;
+
+    margin-bottom: 12px;
+}
+
+
+.rules ul {
+
+    padding-left: 20px;
 }
 
 
 .rules li {
 
-    margin-left: 20px;
-
-    margin-bottom: 7px;
-
     font-size: 14px;
 
     color: #555;
+
+    margin-bottom: 7px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   WARNING NOTE
+========================================= */
+
+.warning-note {
+
+    margin-top: 18px;
+
+    padding: 12px;
+
+    background: #fff8e1;
+
+    border: 1px solid #f0d98c;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+
+    color: #5f4b00;
 }
 
 
@@ -245,6 +294,8 @@ body {
 .start-btn {
 
     width: 100%;
+
+    margin-top: 22px;
 
     padding: 14px;
 
@@ -261,12 +312,16 @@ body {
     font-weight: bold;
 
     cursor: pointer;
+
+    transition: 0.2s;
 }
 
 
 .start-btn:hover {
 
     background: #000;
+
+    transform: translateY(-1px);
 }
 
 
@@ -290,17 +345,19 @@ body {
 
     background: white;
 
-    padding: 15px 20px;
+    border: 1px solid #ddd;
 
     border-radius: 8px;
 
+    padding: 14px 20px;
+
     display: flex;
+
+    align-items: center;
 
     gap: 40px;
 
     margin-bottom: 15px;
-
-    border: 1px solid #ddd;
 }
 
 
@@ -312,17 +369,25 @@ body {
 }
 
 
+#violationCount {
+
+    font-weight: bold;
+
+    color: #c62828;
+}
+
+
 /* =========================================
-   PAPER CONTAINER
+   PAPER
 ========================================= */
 
 .paper-container {
 
     background: white;
 
-    border-radius: 8px;
-
     border: 1px solid #ddd;
+
+    border-radius: 8px;
 
     overflow: hidden;
 }
@@ -346,7 +411,7 @@ body {
 
     font-size: 18px;
 
-    margin-bottom: 3px;
+    margin-bottom: 4px;
 }
 
 
@@ -359,16 +424,16 @@ body {
 
 
 /* =========================================
-   FULL SCREEN BUTTON
+   FULLSCREEN BUTTON
 ========================================= */
 
 .fullscreen-btn {
 
-    padding: 9px 14px;
-
-    border: 1px solid #ccc;
+    padding: 9px 15px;
 
     background: white;
+
+    border: 1px solid #ccc;
 
     border-radius: 6px;
 
@@ -385,14 +450,15 @@ body {
 
 
 /* =========================================
-   PDF VIEWER
+   PDF
 ========================================= */
 
 .pdf-viewer {
 
     width: 100%;
 
-    height: calc(100vh - 180px);
+    height:
+        calc(100vh - 180px);
 
     min-height: 600px;
 
@@ -403,54 +469,95 @@ body {
 
 
 /* =========================================
-   TIME OVER
+   MODAL
 ========================================= */
 
-.time-over {
+.modal {
 
     position: fixed;
 
     inset: 0;
 
-    background: rgba(0, 0, 0, 0.75);
+    background:
+        rgba(0, 0, 0, 0.72);
 
     display: none;
 
-    justify-content: center;
-
     align-items: center;
 
+    justify-content: center;
+
     z-index: 9999;
+
+    padding: 20px;
 }
 
 
-.time-over.show {
+.modal.show {
 
     display: flex;
 }
 
 
-.time-over-card {
+/* =========================================
+   MODAL CARD
+========================================= */
+
+.modal-card {
 
     background: white;
 
-    padding: 45px;
+    width: 100%;
+
+    max-width: 430px;
+
+    padding: 40px;
 
     border-radius: 12px;
 
     text-align: center;
 
-    width: 90%;
+    box-shadow:
+        0 15px 50px
+        rgba(0, 0, 0, 0.25);
+}
 
-    max-width: 420px;
+
+.warning-card {
+
+    border-top: 5px solid #e0a800;
 }
 
 
 .warning-icon {
 
-    width: 55px;
+    width: 60px;
 
-    height: 55px;
+    height: 60px;
+
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+
+    background: #fff3cd;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 32px;
+}
+
+
+.time-icon {
+
+    width: 60px;
+
+    height: 60px;
+
+    margin: 0 auto 18px;
 
     border-radius: 50%;
 
@@ -462,25 +569,51 @@ body {
 
     justify-content: center;
 
-    margin: 0 auto 20px;
-
-    font-size: 30px;
+    font-size: 28px;
 
     font-weight: bold;
 }
 
 
-.time-over-card h2 {
+.modal-card h2 {
 
-    font-size: 28px;
+    font-size: 26px;
 
     margin-bottom: 10px;
 }
 
 
-.time-over-card p {
+.modal-card p {
 
     color: #666;
+
+    line-height: 1.5;
+}
+
+
+.violation-number {
+
+    margin: 20px 0;
+
+    font-weight: bold;
+}
+
+
+.modal-btn {
+
+    padding: 11px 25px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: #111827;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
 }
 
 
@@ -504,11 +637,13 @@ body {
 
     }
 
+
     .exam-title h1 {
 
         font-size: 17px;
 
     }
+
 
     .exam-title p {
 
@@ -516,13 +651,15 @@ body {
 
     }
 
+
     .timer-box {
 
-        min-width: 95px;
+        min-width: 100px;
 
         padding: 6px 10px;
 
     }
+
 
     #timer {
 
@@ -530,11 +667,13 @@ body {
 
     }
 
+
     .start-card {
 
         padding: 25px;
 
     }
+
 
     .exam-screen {
 
@@ -542,11 +681,30 @@ body {
 
     }
 
+
     .student-info {
 
         flex-direction: column;
 
+        align-items: flex-start;
+
         gap: 8px;
+
+    }
+
+
+    .paper-header {
+
+        align-items: flex-start;
+
+        gap: 10px;
+
+    }
+
+
+    .pdf-viewer {
+
+        min-height: 500px;
 
     }
 
