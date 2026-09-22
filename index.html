@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Python Test</title>
+    <title>CCC Test</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,13 +16,13 @@
     <header class="header">
 
         <div class="exam-title">
-            <h1>ADCA EXAM</h1>
+            <h1> Computer Fundamental</h1>
             <!-- <p>ADCA Exam</p> -->
         </div>
 
         <div class="timer-box">
             <span class="timer-label">TIME REMAINING</span>
-            <span id="timer">90:00</span>
+            <span id="timer">50:00</span>
         </div>
 
     </header>
@@ -37,7 +37,7 @@
             <h2>Welcome to the Examination</h2>
 
             <p class="subtitle">
-                ADCA Final Exam
+                CCC Fundamental Test
             </p>
 
             <div class="input-group">
@@ -58,14 +58,14 @@
 
             <div class="input-group">
 
-                <label for="rollNumber">
-                    Roll Number
+                <label for="password">
+                    Password
                 </label>
 
                 <input
-                    type="text"
-                    id="rollNumber"
-                    placeholder="Enter roll number"
+                    type="password"
+                    id="password"
+                    placeholder="Enter password"
                     autocomplete="off"
                 >
 
@@ -82,7 +82,7 @@
 
                     <li>
                         Examination duration is
-                        <strong>1 Hour 30 minutes</strong>.
+                        <strong>50 minutes</strong>.
                     </li>
 
                     <li>
@@ -196,7 +196,7 @@
 
 
             <iframe
-                src="adca-final-exam.pdf"
+                src="CCC.pdf"
                 class="pdf-viewer"
                 title="ADCA Question Paper"
             ></iframe>
@@ -308,7 +308,7 @@
            SETTINGS
         ========================================== */
 
-        const EXAM_DURATION = 90 * 60;
+        const EXAM_DURATION = 50 * 60;
 
         const MAX_VIOLATIONS = 3;
 
@@ -351,8 +351,8 @@
         const studentName =
             document.getElementById("studentName");
 
-        const rollNumber =
-            document.getElementById("rollNumber");
+        const password =
+            document.getElementById("password");
 
         const displayName =
             document.getElementById("displayName");
@@ -394,6 +394,7 @@
             startExam
         );
 
+        
 
         function startExam() {
 
@@ -404,14 +405,17 @@
             const name =
                 studentName.value.trim();
 
-            const roll =
-                rollNumber.value.trim();
+            // const roll =
+            //     rollNumber.value.trim();
+
+            const pwd =
+                password.value.trim();
 
 
-            if (name === "" || roll === "") {
+            if (name === "" || pwd !== "0300") {
 
                 alert(
-                    "Please enter your name and roll number."
+                    "Please enter your name, and password."
                 );
 
                 return;
@@ -422,7 +426,7 @@
 
             displayName.textContent = name;
 
-            displayRoll.textContent = roll;
+            displayRoll.textContent = "-";
 
 
             /* Lock start */
